@@ -1,17 +1,15 @@
 require("dotenv").config();
-const { Pool } = require('pg');
 const app = require("./app");
-
-const pool = new Pool({
-  user: process.env.DB_USERNAME,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
+const { sequelize } = require("./models"); // Import sequelize dari models
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on: localhost:${PORT}`);
-});
+sequelize.sync() // Synchronize Sequelize models
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on: localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  });
