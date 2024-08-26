@@ -4,7 +4,7 @@ const { sequelize } = require("./models"); // Import sequelize dari models
 
 const PORT = process.env.PORT || 3000;
 
-sequelize.sync() // Synchronize Sequelize models
+sequelize.sync({ force: false }) // Synchronize Sequelize models
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on: localhost:${PORT}`);
