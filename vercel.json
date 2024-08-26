@@ -14,9 +14,6 @@
         "src": "/(.*)",
         "dest": "/server.js"
       }
-    ],
-    "env": {
-      "DATABASE_URL": "postgres://postgres:admin123@localhost:5432/db_Spk_Cpi"
-    }
+    ]
   }
   
